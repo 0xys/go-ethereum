@@ -828,6 +828,15 @@ func (s *PublicBlockChainAPI) GetStorageAt(ctx context.Context, address common.A
 	return res[:], state.Error()
 }
 
+// GetFeeMarket returns the base fee value introduced from London hardfork.
+func (s *PublicBlockChainAPI) GetFeeMarket(ctx context.Context) (*hexutil.Big, error) {
+	fee, err := s.b.GetFeeMarket(ctx)
+	if fee == nil || err != nil {
+		return &hexutil.Big{}, err
+	}
+	return (*hexutil.Big)(fee), nil
+}
+
 // OverrideAccount indicates the overriding fields of account during the execution
 // of a message call.
 // Note, state and stateDiff can't be specified at the same time. If state is

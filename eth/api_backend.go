@@ -234,6 +234,12 @@ func (b *EthAPIBackend) SendTx(ctx context.Context, signedTx *types.Transaction)
 	return b.eth.txPool.AddLocal(signedTx)
 }
 
+func (b *EthAPIBackend) GetFeeMarket(ctx context.Context) (*big.Int, error) {
+	blk := b.eth.blockchain.CurrentBlock()
+	fee := blk.BaseFee()
+	return fee, nil
+}
+
 func (b *EthAPIBackend) GetPoolTransactions() (types.Transactions, error) {
 	pending, err := b.eth.txPool.Pending(false)
 	if err != nil {

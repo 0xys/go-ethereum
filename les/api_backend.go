@@ -127,6 +127,11 @@ func (b *LesApiBackend) BlockByNumberOrHash(ctx context.Context, blockNrOrHash r
 	}
 	return nil, errors.New("invalid arguments; neither block nor hash specified")
 }
+func (b *LesApiBackend) GetFeeMarket(ctx context.Context) (*big.Int, error) {
+	blk := types.NewBlockWithHeader(b.eth.BlockChain().CurrentHeader())
+	fee := blk.BaseFee()
+	return fee, nil
+}
 
 func (b *LesApiBackend) PendingBlockAndReceipts() (*types.Block, types.Receipts) {
 	return nil, nil
