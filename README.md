@@ -78,6 +78,18 @@ eth.getBalance("0x5623594223fD9eEbA2EBBf8739Cc898c1a5c6b6c")
 ```
 eth.sendTransaction({from: "0x5623594223fD9eEbA2EBBf8739Cc898c1a5c6b6c", to: "0x9758Bf155af369dAE439803039f3E682653eBd3E", value: 1})
 ```
+### export
+```
+./build/bin/geth export <file_name> 1 374
+```
+- https://geth.ethereum.org/docs/interface/command-line-options
+
+### snapshot
+```
+./build/bin/geth snapshot prune-state
+```
+- `ERROR[01-18|01:42:27.661] Failed to prune state                    err="snapshot not old enough yet: need 125 more blocks"`
+  - need at least 500 blocks
 
 ## errors
 > `authentication needed: password or unlock`
